@@ -23,8 +23,6 @@ public class UserController {
 
 	private UserService userService;
 
-	private static Log log = LogFactory.getLog(UserController.class);
-	
 	@Autowired
 	public UserController(UserService userService) {
 		this.userService = userService;
@@ -36,17 +34,17 @@ public class UserController {
 		return userService.findAll();
 	}
 	
-//	@PostMapping("/signup")
-//	public User addUser(@RequestBody User user) {
-//		
-//		userService.save(user);
-//		
-//		return user;
-//	}
-	
 	@PostMapping("/signup")
-	public ResponseEntity<String> addUser(@RequestBody User user) {
-			
-		return userService.saveAndRespond(user);
+	public User addUser(@RequestBody User user) {
+		
+		userService.save(user);
+		
+		return user;
 	}
+	
+//	@PostMapping("/signup")
+//	public ResponseEntity<String> addUser(@RequestBody User user) {
+//			
+//		return userService.saveAndRespond(user);
+//	}
 }

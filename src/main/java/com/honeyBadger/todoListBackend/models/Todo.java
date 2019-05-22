@@ -29,6 +29,9 @@ public class Todo {
 //	@JoinColumn(name="todo_id")
 //	private List<Item> items;
 	
+	@Column(name="user_id")
+	private Long userId;
+	
 	@Column(name="completed")
 	private boolean completed;
 	
@@ -36,9 +39,10 @@ public class Todo {
 		
 	}
 
-	public Todo(String title, boolean completed) {
+	public Todo(String title, boolean completed, Long userId) {
 		this.title = title;
 		this.completed = completed;
+		this.userId = userId;
 	}
 
 	public Long getId() {
@@ -72,6 +76,15 @@ public class Todo {
 	public void setCompleted(boolean completed) {
 		this.completed = completed;
 	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+	
 	
 	//convenience method
 	
