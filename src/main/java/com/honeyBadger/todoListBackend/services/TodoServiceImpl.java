@@ -59,7 +59,6 @@ public class TodoServiceImpl implements TodoService {
 	@Override
 	public void update(Todo todo, long todoId, long userId) {
 		
-//		Optional<Todo> _todo = todoRepository.findById(todoId);
 		Optional<Todo> _todo = todoRepository.findByIdAndUserId(todoId, userId);
 		
 		if(_todo.isPresent()) {
@@ -72,13 +71,24 @@ public class TodoServiceImpl implements TodoService {
 			
 		
 	}
-//
-//	@Override
-//	public String deleteById(long id) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
+
+
+	@Override
+	public String deleteById(long todoId, long userId) {
+		
+		Optional<Todo> _todo = todoRepository.findByIdAndUserId(todoId, userId);
+		
+		String message = null;
+		
+		if(_todo.isPresent()) {
+			todoRepository.deleteById(todoId);
+			message = "Deleted todo with id = " + todoId;
+		} else {
+			message = "Todo with Id " + todoId + " not found";
+		}
+		
+		return message;
+	}
 
 
 }

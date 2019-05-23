@@ -14,4 +14,6 @@ public interface TodoService {
 
 	void update(Todo todo, long todoId, long userId);
 
+	String deleteById(long todoId, long userId);
+
 }

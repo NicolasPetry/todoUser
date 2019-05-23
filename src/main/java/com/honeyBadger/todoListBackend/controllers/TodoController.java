@@ -57,18 +57,21 @@ private TodoService todoService;
 	}
 	
 	@PutMapping("{todoId}")
-	public Todo updateTodo(@PathVariable("userId") long userId,
-						   @PathVariable("todoId") long todoId,
-						   @RequestBody Todo todo) {
+	public Todo updateTodo(
+			@PathVariable("userId") long userId,
+			@PathVariable("todoId") long todoId,
+			@RequestBody Todo todo) {
 		
 		todoService.update(todo, todoId, userId);
 		
 		return todo;
 	}
-//	
-//	@DeleteMapping("{id}")
-//	public String deleteTodo(@PathVariable long id) {
-//			
-//		return todoService.deleteById(id);
-//	}
+	
+	@DeleteMapping("{todoId}")
+	public String deleteTodo(
+			@PathVariable("userId") long userId,
+			@PathVariable("todoId") long todoId) {
+			
+		return todoService.deleteById(todoId, userId);
+	}
 }
