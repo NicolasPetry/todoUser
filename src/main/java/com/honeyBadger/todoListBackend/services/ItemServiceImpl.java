@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.honeyBadger.todoListBackend.models.Item;
-import com.honeyBadger.todoListBackend.models.Todo;
 import com.honeyBadger.todoListBackend.repositories.ItemRepository;
 
 @Service
@@ -55,6 +54,22 @@ public class ItemServiceImpl implements ItemService {
 		} else
 			throw new RuntimeException("item not found with id " + itemId);
 		
+	}
+
+	@Override
+	public String deleteById(long todoId, long itemId) {
+		
+		Optional<Item> _item = itemRepository.findByIdAndTodoId(itemId, todoId);
+		
+		String message = null;
+		
+		if(_item.isPresent()) {
+			itemRepository.deleteById(itemId);
+			message = "Deleted item with id = " + itemId;
+		} else
+			throw new RuntimeException("item not found with id " + itemId);
+		
+		return message;
 	}
 
 }

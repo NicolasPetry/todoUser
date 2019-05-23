@@ -3,6 +3,7 @@ package com.honeyBadger.todoListBackend.controllers;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,5 +49,13 @@ public class ItemController {
 		itemService.update(item, itemId, todoId);
 		
 		return item;
+	}
+	
+	@DeleteMapping("{itemId}")
+	public String deleteTodo(
+			@PathVariable("itemId") long itemId,
+			@PathVariable("todoId") long todoId) {
+			
+		return itemService.deleteById(todoId, itemId);
 	}
 }

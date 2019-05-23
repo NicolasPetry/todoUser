@@ -12,4 +12,6 @@ public interface ItemService {
 
 	void update(Item item, long itemId, long todoId);
 
+	String deleteById(long todoId, long itemId);
+
 }
