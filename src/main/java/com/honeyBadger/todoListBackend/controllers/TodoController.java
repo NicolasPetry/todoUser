@@ -18,7 +18,7 @@ import com.honeyBadger.todoListBackend.services.TodoService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api/todo/{id}")
+@RequestMapping("/api/todo/{userId}")
 public class TodoController {
 
 	
@@ -30,14 +30,14 @@ private TodoService todoService;
 	}
 
 	@GetMapping
-	public List<Todo> getAllTodos(@PathVariable("id") long userId) {
+	public List<Todo> getAllTodos(@PathVariable("userId") long userId) {
 		
 		return todoService.findByUserId(userId);
 	}
 	
 	
-	@GetMapping("{id}")
-	public Todo getTodoById(@PathVariable("id") long todoId) throws Exception {
+	@GetMapping("{todoId}")
+	public Todo getTodoById(@PathVariable("todoId") long todoId) throws Exception {
 		
 		Todo todo = todoService.findById(todoId);
 		
@@ -49,21 +49,22 @@ private TodoService todoService;
 	}
 	
 	@PostMapping
-	public Todo postTodo(@PathVariable("id") long userId, @RequestBody Todo todo) {
+	public Todo postTodo(@PathVariable("userId") long userId, @RequestBody Todo todo) {
 		
 		todoService.save(todo, userId);
 		
 		return todo;
 	}
-//	
-//	@PutMapping("{id}")
-//	public Todo updateTodo(@PathVariable("id") long id,
-//						   @RequestBody Todo todo) {
-//		
-//		todoService.update(todo, id);
-//		
-//		return todo;
-//	}
+	
+	@PutMapping("{todoId}")
+	public Todo updateTodo(@PathVariable("userId") long userId,
+						   @PathVariable("todoId") long todoId,
+						   @RequestBody Todo todo) {
+		
+		todoService.update(todo, todoId, userId);
+		
+		return todo;
+	}
 //	
 //	@DeleteMapping("{id}")
 //	public String deleteTodo(@PathVariable long id) {

@@ -55,16 +55,23 @@ public class TodoServiceImpl implements TodoService {
 
 	}
 
-	
 
-
-	
-//
-//	@Override
-//	public void update(Todo todo, long id) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+	@Override
+	public void update(Todo todo, long todoId, long userId) {
+		
+//		Optional<Todo> _todo = todoRepository.findById(todoId);
+		Optional<Todo> _todo = todoRepository.findByIdAndUserId(todoId, userId);
+		
+		if(_todo.isPresent()) {
+			Todo updatedTodo = _todo.get();
+			updatedTodo.setTitle(todo.getTitle());
+			updatedTodo.setCompleted(todo.isCompleted());
+			todoRepository.save(updatedTodo);
+		} else
+			throw new RuntimeException("todo not found with id " + todoId);
+			
+		
+	}
 //
 //	@Override
 //	public String deleteById(long id) {

@@ -12,4 +12,6 @@ public interface TodoService {
 
 	void save(Todo todo, long userId);
 
+	void update(Todo todo, long todoId, long userId);
+
 }
