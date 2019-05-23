@@ -47,14 +47,14 @@ private TodoService todoService;
 		
 		return todo;
 	}
-//	
-//	@PostMapping
-//	public Todo postTodo(@RequestBody Todo todo) {
-//		
-//		todoService.save(todo);
-//		
-//		return todo;
-//	}
+	
+	@PostMapping
+	public Todo postTodo(@PathVariable("id") long userId, @RequestBody Todo todo) {
+		
+		todoService.save(todo, userId);
+		
+		return todo;
+	}
 //	
 //	@PutMapping("{id}")
 //	public Todo updateTodo(@PathVariable("id") long id,

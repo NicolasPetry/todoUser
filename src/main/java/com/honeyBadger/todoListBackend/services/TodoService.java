@@ -10,4 +10,6 @@ public interface TodoService {
 
 	Todo findById(long todoId);
 
+	void save(Todo todo, long userId);
+
 }
