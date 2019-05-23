@@ -9,7 +9,7 @@ import com.honeyBadger.todoListBackend.models.Todo;
 
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 
-	List<Todo> findByUserId(long id);
+	List<Todo> findByUserId(long userId);
 	Optional<Todo> findByIdAndUserId(Long id, long userId);
 
 }

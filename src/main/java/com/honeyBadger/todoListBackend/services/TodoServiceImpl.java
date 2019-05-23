@@ -19,11 +19,11 @@ public class TodoServiceImpl implements TodoService {
 	}
 
 	@Override
-	public List<Todo> findByUserId(long id) {
+	public List<Todo> findByUserId(long userId) {
 		
 		List<Todo> todos = new ArrayList<>();
 		
-		todos = todoRepository.findByUserId(id);
+		todos = todoRepository.findByUserId(userId);
 		
 		return todos;
 	}

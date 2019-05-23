@@ -1,5 +1,8 @@
 package com.honeyBadger.todoListBackend.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.honeyBadger.todoListBackend.models.Item;
@@ -15,6 +18,16 @@ public class ItemServiceImpl implements ItemService {
 		this.itemRepository = itemRepository;
 	}
 
+	@Override
+	public List<Item> findByTodoId(long todoId) {
+		
+		List<Item> items = new ArrayList<>();
+		
+		items = itemRepository.findByTodoId(todoId);
+		
+		return items;
+	}
+	
 	@Override
 	public void save(Item item, long userId) {
 		
