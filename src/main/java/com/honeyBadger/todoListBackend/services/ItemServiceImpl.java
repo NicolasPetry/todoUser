@@ -2,10 +2,12 @@ package com.honeyBadger.todoListBackend.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.honeyBadger.todoListBackend.models.Item;
+import com.honeyBadger.todoListBackend.models.Todo;
 import com.honeyBadger.todoListBackend.repositories.ItemRepository;
 
 @Service
@@ -37,6 +39,21 @@ public class ItemServiceImpl implements ItemService {
 		_item.setTodoId(userId);
 		
 		itemRepository.save(_item);
+		
+	}
+
+	@Override
+	public void update(Item item, long itemId, long todoId) {
+		
+		Optional<Item> _item = itemRepository.findByIdAndTodoId(itemId, todoId);
+		
+		if(_item.isPresent()) {
+			Item updatedItem = _item.get();
+			updatedItem.setTitle(item.getTitle());
+			updatedItem.setCompleted(item.isCompleted());
+			itemRepository.save(updatedItem);
+		} else
+			throw new RuntimeException("item not found with id " + itemId);
 		
 	}
 

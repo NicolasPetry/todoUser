@@ -10,4 +10,6 @@ public interface ItemService {
 
 	List<Item> findByTodoId(long todoId);
 
+	void update(Item item, long itemId, long todoId);
+
 }
