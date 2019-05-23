@@ -1,6 +1,5 @@
 package com.honeyBadger.todoListBackend.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -25,9 +24,9 @@ public class Todo {
 	@Column(name="title")
 	private String title;
 	
-//	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-//	@JoinColumn(name="todo_id")
-//	private List<Item> items;
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name="todo_id")
+	private List<Item> items;
 	
 	@Column(name="user_id")
 	private Long userId;
@@ -61,13 +60,13 @@ public class Todo {
 		this.title = title;
 	}
 
-//	public List<Item> getItems() {
-//		return items;
-//	}
-//
-//	public void setItems(List<Item> items) {
-//		this.items = items;
-//	}
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
 
 	public boolean isCompleted() {
 		return completed;
@@ -97,8 +96,8 @@ public class Todo {
 //	}
 	
 
-//	@Override
-//	public String toString() {
-//		return "Todo [id=" + id + ", title=" + title + ", items=" + items + ", completed=" + completed + "]";
-//	}
+	@Override
+	public String toString() {
+		return "Todo [id=" + id + ", title=" + title + ", items=" + items + ", completed=" + completed + "]";
+	}
 }
