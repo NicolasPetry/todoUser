@@ -2,6 +2,7 @@ package com.honeyBadger.todoListBackend.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,21 @@ public class TodoServiceImpl implements TodoService {
 		
 		return todos;
 	}
+
+	@Override
+	public Todo findById(long todoId) {
+		
+		Optional<Todo> todoOptional = todoRepository.findById(todoId);
+		
+		Todo todo = null;
+		
+		if(todoOptional.isPresent())
+			todo = todoOptional.get();
+		else
+			throw new RuntimeException("todo not found with id " + todoId);
+		
+		return todo;
+	}
 	
 //	@Override
 //	public void save(Todo todo) {
@@ -45,10 +61,6 @@ public class TodoServiceImpl implements TodoService {
 //		return null;
 //	}
 //
-//	@Override
-//	public Todo findById(long id) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+
 
 }

@@ -36,17 +36,17 @@ private TodoService todoService;
 	}
 	
 	
-//	@GetMapping("{id}")
-//	public Todo getTodoById(@PathVariable("id") long id) throws Exception {
-//		
-//		Todo todo = todoService.findById(id);
-//		
-//		if(todo == null) {
-//			throw new Exception("todo not found" +id);
-//		}
-//		
-//		return todo;
-//	}
+	@GetMapping("{id}")
+	public Todo getTodoById(@PathVariable("id") long todoId) throws Exception {
+		
+		Todo todo = todoService.findById(todoId);
+		
+		if(todo == null) {
+			throw new Exception("todo not found" +todoId);
+		}
+		
+		return todo;
+	}
 //	
 //	@PostMapping
 //	public Todo postTodo(@RequestBody Todo todo) {

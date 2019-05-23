@@ -8,4 +8,6 @@ public interface TodoService {
 
 	List<Todo> findByUserId(long id);
 
+	Todo findById(long todoId);
+
 }
